@@ -8,7 +8,6 @@ import groovy.util.logging.Slf4j
 import org.springframework.web.context.support.WebApplicationContextUtils
 
 import javax.servlet.*
-import java.util.TimeZone
 import java.text.SimpleDateFormat
 
 @Slf4j
@@ -205,10 +204,12 @@ class AssetPipelineFilter implements Filter {
 	boolean hasNotChanged(String ifModifiedSince, Date date) {
 		boolean hasNotChanged = false
 		if (ifModifiedSince) {
-			final SimpleDateFormat sdf = new SimpleDateFormat(HTTP_DATE_FORMAT);
+			// Backported hotfix by robertoschwald for 2.9.1. See https://github.com/bertramdev/grails-asset-pipeline/commit/2b8ae4b3ca32abbbb79c9b1af80c26b22e6f1766
+			final SimpleDateFormat sdf = new SimpleDateFormat(HTTP_DATE_FORMAT, Locale.US);
 			sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 			try {
-				hasNotChanged = new Date(file?.lastModified()) <= sdf.parse(ifModifiedSince)
+				// Fix by robertoschwald for 2.9.1 for https://github.com/bertramdev/grails-asset-pipeline/issues/379
+				hasNotChanged = date <= sdf.parse(ifModifiedSince)
 			} catch (Exception e) {
 				log.debug("Could not parse date time or file modified date", e)
 			}
@@ -216,7 +217,8 @@ class AssetPipelineFilter implements Filter {
 		return hasNotChanged
 	}
 	private String getLastModifiedDate(Date date) {
-		final SimpleDateFormat sdf = new SimpleDateFormat(HTTP_DATE_FORMAT);
+		// Backported hotfix by robertoschwald for 2.9.1. See https://github.com/bertramdev/grails-asset-pipeline/commit/2b8ae4b3ca32abbbb79c9b1af80c26b22e6f1766
+		final SimpleDateFormat sdf = new SimpleDateFormat(HTTP_DATE_FORMAT, Locale.US);
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		String lastModifiedDateTimeString = sdf.format(new Date())
 		try {
