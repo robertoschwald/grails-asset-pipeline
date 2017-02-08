@@ -37,3 +37,7 @@ grails {
 		}
 	}
 }
+
+// Repository to publish to. See README.md and ~/.grails/settings.groovy
+grails.project.repos.default = "artifactory" // "artifactory" for releases and snapshots
+
