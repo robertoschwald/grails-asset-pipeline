@@ -13,21 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import grails.plugin.webxml.FilterManager
-
-import org.codehaus.groovy.grails.plugins.GrailsPluginUtils
 
 import asset.pipeline.AssetPipelineConfigHolder
-import asset.pipeline.fs.FileSystemAssetResolver
 import asset.pipeline.fs.ClasspathAssetResolver
+import asset.pipeline.fs.FileSystemAssetResolver
 import asset.pipeline.grails.AssetPipelineFilter
 import asset.pipeline.grails.AssetResourceLocator
 import asset.pipeline.grails.CachingLinkGenerator
 import asset.pipeline.grails.LinkGenerator
-import asset.pipeline.grails.fs.SpringResourceAssetResolver
+import grails.plugin.webxml.FilterManager
+import org.codehaus.groovy.grails.plugins.GrailsPluginUtils
 
 class AssetPipelineGrailsPlugin {
-    def version         = "2.9.1"
+    def version         = "2.9.1-symHotfix1"
     def grailsVersion   = "2.2 > *"
     def title           = "Asset Pipeline Plugin"
     def author          = "David Estes"
