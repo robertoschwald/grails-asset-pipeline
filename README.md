@@ -2,8 +2,16 @@ Grails Asset Pipeline
 =====================
 [![Build Status](https://travis-ci.org/bertramdev/asset-pipeline.png?branch=master)](https://travis-ci.org/bertramdev/asset-pipeline)
 
-Note: This is a fork of grails-asset-pipeline with small, but yet important fixes to the AssetPipelineFilter which was fixed in 2.13.1, but this version currently does not work with babel-asset-pipeline. See https://github.com/peh/grails-babel-asset-pipeline/issues/14 .
-Therfore I decided to fork 2.9.1 release and make an interim fix version, which I deploy to my local Artifactory.
+Note: This is a fork of grails-asset-pipeline with small, but yet important fixes to the AssetPipelineFilter which was fixed in 2.13.1,
+but this version currently does not work with babel-asset-pipeline.
+See https://github.com/peh/grails-babel-asset-pipeline/issues/14.
+Therfore I decided to fork 2.9.1 release and make an interim fix version, which I deploy to my local Maven repo.
+
+To Deploy to your own Maven repo (Nexus, Artifactory, etc), perform
+
+```
+grails maven-deploy --repository=<your repo name>
+```
 
 Overview
 --------
